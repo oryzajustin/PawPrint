@@ -10,5 +10,5 @@ def sendsms(message):
                                      media_url = "https://i.ytimg.com/vi/nomNd-1zBl8/maxresdefault.jpg")
 
 if(__name__ == '__main__'):
-    message = "We may have found your pet."
+    message = "We may have found your pet. Do you think this is your pet? (Y/N)"
     sendsms(message)

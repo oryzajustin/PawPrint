@@ -9,12 +9,13 @@ def sms_reply():
     response = MessagingResponse()
     body = request.values.get('Body', None)
     
-    if(body == 'Hi' or body == 'hi'):
-        response.message("Hi, what can I do for you?")
-    elif(body == 'Bye' or body == 'bye'):
-        response.message("Goodbye!")
+    if(body == 'Yes' or body == 'yes' or body == 'Y' or body == 'y'):
+        response.message("Okay, great! Here's where your pet was last seen.")
+        #TODO send information about pet, and remove client request from database
+    elif(body == 'No' or body == 'no' or body == 'N' or body == 'n'):
+        response.message("Oh no :( We'll keep looking for your pet!")
     else:
-        response.message("I am not a bot, these responses are hard coded.")
+        response.message("Please enter either 'Y' or 'N'")
     
     return str(response)
 
