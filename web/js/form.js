@@ -11,7 +11,7 @@ var cameras;
 var map;
 var sendData;
 
-$.getJSON(url, function(data) {s
+$.getJSON(url, function(data) {
 	cameras = data;
 	delete data.latitude;
 	delete data.longitude;
@@ -68,6 +68,7 @@ function formSubmit() {
 		pet: document.getElementById("animal").value
 	};
 	sendData = JSON.stringify(sendData);
+	$("#startBtn").addClass("is-loading");
 	$.post( "https://mdislam.com", sendData, function( data ) {
 	  console.log(data);
 	  window.location.replace('success.html');
