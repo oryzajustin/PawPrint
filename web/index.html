@@ -1,52 +1,73 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FindMyPet</title>
+    <title>Pawprint</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="index.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!--<script src="parallax.min.js"></script>-->
   </head>
-  <body>
-    <div id="feature">
-      <div class="midcontainer">
-        <h1 id="maintitle">FindMyPet</h1>
-        <p id="slogan">Because every pet deserves its owner</p>
-        <button class="btn" id="mybtn">Find your Pet!</button>
-      </div>
-    </div>
-    <div class="info">
-      <h2 class="subheading">How it Works</h2>
-      <!---->
-    </div>
-      <form id="myForm">
-      <div class="form-row">
-      <div class="form-group col-md-4">
-        <label for="name">Name:</label>
-        <input type="text" class="form-control" id="name" placeholder="Enter Name">
-      </div>
-      <div class="form-group col-md-4">
-        <label for="phone">Phone Number:</label>
-        <input type="tel" class="form-control" id="phone" placeholder="Enter Phone">
-      </div>
-      <div class="form-group col-md-4">
-      	<label for="animal">Looking for:</label>
-      	<select id="animal" class="form-control">
-      		<option selected value="dog">Dog</option>
-      		<option value="cat">Cat</option>
-      	</select>
-      </div>
-      </div>
-      <button type="submit" id="myButton" class="btn btn-primary" onclick="formSubmit()">Submit</button>
-    </form>
 
-    <div id="map"></div>
-    <script src="index.js"></script>
-    <script src="scroll.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhEVep1vXmpwFs3K2NFX7YlwhK6eINEEQ&callback=initMap"
-    async defer></script>
+  <body>
+
+    <section id="bg" class="hero is-success is-fullheight">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Päwprint
+          </h1>
+          <h2 class="subtitle">
+            Utilizing public camera streams to detect and report stray animals via computer vision
+          </h2>
+
+          <a onclick="$('html,body').animate({ scrollTop: $('#learnmore').offset().top });" class="button is-info is-medium">Learn More</a>
+          <a href="form.html" class="button is-success is-medium">Get Started</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="learnmore" class="section">
+      <h3 class="title has-text-centered">How it Works</h3><br>
+      <div class="container has-text-centered">
+        <div class="columns">
+          <div class="column">
+            <center><img src="img/dog.png" class="image circle"></center><br>
+            <h5 class="subtitle">Notify Us<h5>
+            <p>
+              Lost a pet? Tell us the area where you last saw your pet, and how far you want to search.
+            </p>
+          </div>
+
+          <div class="column">
+            <center><img src="img/camera.png" class="image circle"></center><br>
+            <h5 class="subtitle">We Look Around<h5>
+            <p>
+              We have cameras located around the city which are scanning Boston 24 hours a day, 7 days a week.
+            </p>
+          </div>
+
+          <div class="column">
+            <center><img src="img/text.png" class="image circle"></center><br>
+            <h5 class="subtitle">Get Alerted<h5>
+            <p>
+              We'll send you a text message once we have potentially found your pet!
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>
+            &copy; 2017 Pawprint, Inc.
+          </p>
+        </div>
+      </div>
+    </footer>
+
   </body>
-</html>

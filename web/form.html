@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Päwprint</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="css/form.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+      <!-- Image and text -->
+
+        <div class="container" style="width:100%; height:100%;">
+
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="index.html" style="font-weight: bold; font-size:18px;">
+              <img src="img/paws.png" alt="paws" width="30" height="30" style="margin-right:10px;">
+              Päwprint
+            </a>
+
+            <button class="button navbar-burger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </nav>
+
+        <section class="hero">
+          <div class="hero-body">
+            <div class="container">
+              <h1 class="title">
+                Start Monitoring
+              </h1>
+              <h2 class="subtitle">
+                Analyze over 50 cameras spread throughout the Boston metropolitan area.
+              </h2>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="section">
+          <form id="searchForm">
+            <div class="columns">
+              <div class="column">
+                <div class="field">
+                  <label class="label">Name</label>
+                  <div class="control">
+                    <input class="input" id="name" type="text" placeholder="Richard Hendricks">
+                  </div>
+                </div>
+              </div>
+
+              <div class="column">
+                <div class="field">
+                  <label class="label">Phone Number</label>
+                  <div class="control">
+                    <input class="input" id="phone" type="tel" placeholder="1-234-567-8910">
+                  </div>
+                </div>
+              </div>
+
+              <div class="column">
+                <div class="field">
+                  <label class="label">Lookout for</label>
+                  <div class="control">
+                    <div class="select is-fullwidth">
+                      <select id="animal">
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                        <option value="both">Both</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </section>
+
+
+        <div id="map"></div>
+          
+
+
+        <button id="startBtn" class="button is-success is-fullwidth is-large" onclick="formSubmit()">START</button><br><br>
+      </div>
+
+    <script src="js/form.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhEVep1vXmpwFs3K2NFX7YlwhK6eINEEQ&callback=initMap"
+    async defer></script>
+  </body>
+</html>

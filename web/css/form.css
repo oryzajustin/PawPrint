@@ -1,0 +1,20 @@
+
+/* Always set the map height explicitly to define the size of the div
+* element that contains the map. */
+#map {
+	height: 70%;
+	width: 100%;
+	margin-bottom:25px;
+}
+/* Sets size of sample page */
+
+
+html, body {
+	height: 100%;
+	overflow:hidden;
+	overflow-y:auto;
+}
+
+footer {
+	margin-top:15%;
+}

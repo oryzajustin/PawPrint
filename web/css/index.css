@@ -1,0 +1,19 @@
+#bg {
+	background-image:url('../img/bg3.jpg');
+	background-size:cover;
+	background-position:center;
+}
+
+.circle {
+	background-color:#242424;
+	border-radius:50px;
+	padding:25px;
+}
+
+.title {
+	font-size:3em;
+}
+
+.subtitle {
+	font-size:1.7em; 
+}
