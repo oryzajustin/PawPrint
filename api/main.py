@@ -78,7 +78,7 @@ def sms():
 
 	if(body.lower() == 'stop' or body.lower() == 's'):
 		with DBase() as db:
-			phone = request.values.get('From', None)
+			phone = request.values.get('From', None) #FIXED: not working
 			if db.setFound(phone):
 				response.message("Okay. Bye")
 	else:
@@ -119,6 +119,7 @@ def found():
 			#JJ: TODO animal_request['name'], animal_request['animal_type']
 			global twilio_client
 			twilio_client.sendMediaSms(message, animal_request['phone'], image_url)
+			db.setFound(animal_request['phone']) #FIXME: Don't set animal to found here....
 		return json.dumps(animal_requests)
 
 if __name__ == '__main__':
