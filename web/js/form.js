@@ -1,14 +1,17 @@
+/*TODO
+ *-replace URL in post request
+ *
+ */
+
 var bounds;
 var rectangle;
 var url = "http://pawprint.dirt.io/cameras";
 var form = document.getElementById("myForm");
-var coordDiv = document.getElementById("mapText");
 var cameras;
 var map;
 var sendData;
 
-$.getJSON(url, function(data) {
-	console.log('cameras load')
+$.getJSON(url, function(data) {s
 	cameras = data;
 	delete data.latitude;
 	delete data.longitude;
@@ -52,39 +55,31 @@ function placeMarkers() {
 }
 
 function formSubmit() {
-	//Post the newBounds
-	var nameValue = document.getElementById("name").value;
-	var phoneValue = document.getElementById("phone").value;
-	var petValue = document.getElementById("animal").value;
-
-	console.log(nameValue + " " + phoneValue + " " + petValue);
 	let newBounds = {
 		north: rectangle.getBounds().getNorthEast().lat(),
 		south: rectangle.getBounds().getSouthWest().lat(),
 		east: rectangle.getBounds().getNorthEast().lng(),
-		west: rectangle.getBounds().getSouthWest().lng()
+		west: rectangle.getBounds().getSouthWest().lng(),		
+	}
+	sendData = {
+		cameraids: getCameras(newBounds),
+		name: document.getElementById("name").value,
+		phone: document.getElementById("phone").value,
+		pet: document.getElementById("animal").value
 	};
-	let print = "North lat: " +  newBounds.north
-		+ "\nEast long: " + newBounds.east
-		+ "\nSouth lat: " + newBounds.south
-		+ "\nWest long: " + newBounds.west;
-	console.log(print);
+	sendData = JSON.stringify(sendData);
+	$.post( "https://mdislam.com", sendData, function( data ) {
+	  console.log(data);
+	  window.location.replace('success.html');
+	});
 }
 
-function updateView() {
-	let newBounds = {
-		north: rectangle.getBounds().getNorthEast().lat(),
-		south: rectangle.getBounds().getSouthWest().lat(),
-		east: rectangle.getBounds().getNorthEast().lng(),
-		west: rectangle.getBounds().getSouthWest().lng()
-	};
-
-	let print = "Box is around: ";
+function getCameras(coords) {
+	var camID = [];
 	for (let i = 0; i < cameras.length; i++) {
-		if (cameras[i].longitude > newBounds.west && cameras[i].longitude < newBounds.east && cameras[i].latitude > newBounds.south && cameras[i].latitude < newBounds.north) {
-			print += " " + cameras[i].id;
+		if (cameras[i].longitude > coords.west && cameras[i].longitude < coords.east && cameras[i].latitude > coords.south && cameras[i].latitude < coords.north) {
+			camID.push(i);
 		}
 	}
-	coordDiv.innerHTML = print;	
+	return camID;
 }
-
