@@ -60,12 +60,12 @@ def requestTrack():
 	data = request.get_json()
 	camera_ids = data['cameraids']
 	name = data['name']
-	phone = data['phone']
+	phone = "+1" + data['phone']
 	animal_type = data['pet']
 	
 	# Phone number verification
 	if not twilio_client.validatePhone(phone):
-		return errorResponse(400, "Phone is not valid. Please have it in the format of '+12345678901'")
+		return errorResponse(400, "Phone is not valid. Please have it in the format of '1234567890'")
 
 	with DBase() as db:
 		result = db.addRequest(phone, camera_ids, animal_type, name)
