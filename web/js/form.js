@@ -79,7 +79,7 @@ function getCameras(coords) {
 	var camID = [];
 	for (let i = 0; i < cameras.length; i++) {
 		if (cameras[i].longitude > coords.west && cameras[i].longitude < coords.east && cameras[i].latitude > coords.south && cameras[i].latitude < coords.north) {
-			camID.push(i);
+			camID.push(cameras[i].id);
 		}
 	}
 	return camID;
