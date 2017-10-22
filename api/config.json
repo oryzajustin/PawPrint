@@ -1,0 +1,8 @@
+{
+	"DB": {
+		"SERVER": "pawprintdb.mysql.database.azure.com",
+		"USER": "pawprint@pawprintdb",
+		"PASSWORD": "$hackharvard2017",
+		"SCHEMA": "pawprint"
+	}
+}
