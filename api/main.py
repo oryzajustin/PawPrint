@@ -5,9 +5,10 @@ import sys
 from flask import Flask, request, Response
 import json
 from dbase import DBase
+from twilioClient import TwilioClient
 
 app = Flask(__name__)
-
+twilio_client = TwilioClient()
 
 #def validate_found(data):
 #	if not data.has_key(''):
@@ -76,11 +77,14 @@ def found():
 		print(json.dumps(result))
 		if result == False:
 			return errorResponse(500, "ERROR PROCESSING REQUEST 1000")
-	
+
 		animal_requests = db.findActiveRequests(camera_id, animal_type)
 
-		#for animal_request in animal_requests:
-			#JJ: TODO: twilio
+		for animal_request in animal_requests:
+			message = 'found yo animal bro'
+			#JJ: TODO animal_request['name'], animal_request['animal_type']
+			global twilio_client
+			twilio_client.sendMediaSms(message, animal_request['phone'], image_url)
 		return json.dumps(animal_requests)
 
 

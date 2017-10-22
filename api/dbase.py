@@ -76,7 +76,7 @@ class DBase:
 		return result
 
 	def findActiveRequests(self, camera_id, animal_type):
-		sql = 'SELECT r.id, r.name, r.phone, r.animal_type FROM request r INNER JOIN requestCamera rc ON r.id=rc.request_id WHERE r.found=false AND r.animal_type=%s AND rc.camera_id=%s'
+		sql = 'SELECT r.id as id, r.name as name, r.phone as phone, r.animal_type as animal_type FROM request r INNER JOIN requestCamera rc ON r.id=rc.request_id WHERE r.found=false AND r.animal_type=%s AND rc.camera_id=%s'
 		self.cursor.execute(sql, (animal_type, camera_id,))
 		return self.results(self.cursor)
 
