@@ -1,47 +1,68 @@
-#feature {
-	background: url("img/bg.jpg") no-repeat center center;
-	background-size: cover;
-	height: 600px;
-	width: 100%;
+body {
+	margin: 0;
+	background-color: #1a1a1a;
+	color: white;
+	font-family: 'Josefin Sans', 'sans-serif';
 	text-align: center;
-	background-color: black;
 }
 #maintitle {
-	text-align: center;
-	color: white;
 	font-size: 20vh;
 }
+
 #slogan {
+	margin-top: -1%;
 	font-size: 4vh;
-	color: #c4c4c4;
+	color: #444444;
 }
+
+/*header*/
 .btn {
-	background-color: #1a1a1a;
+	background-color: #292929;
 	color: #fff;
 	font-size: 6vh;
 	padding: 8px 30px;
-	border-radius: 10px;
+	border-radius: 15px;
 	display: inline-block;
+	transition-duration: 0.4s;
+	-webkit-transition-duration: 0.4s; /*Safari*/
 }
+
+.btn:hover {
+	background-color: #4f4f4f;
+	color: #fff;
+}
+
 .midcontainer {
 	padding-top: 15%;
+}
+
+/*bullet points*/
+.subheading {
+	padding-top: 2%;
 }
 .info {
 	height: 350px;
 }
-.subheading {
-	text-align: center;
-	padding-top: 2%;
-}
-/* Always set the map height explicitly to define the size of the div
-* element that contains the map. */
-#map {
-	height: 70%;
-	width: 50%;
-}
-/* Sets size of sample page */
 
+.image {
+	margin: 0 auto;
+	width: 20%;
+	height: 20%;
+}
 
-html, body {
-	height: 100%;
+#feature {
+	background: url("img/bg.jpg") no-repeat center center;
+	background-size: cover;
+	height: 600px;
+}
+
+footer {
+	font-size: 3vh;
+	padding-top: 20px;
+	color: white;
+	height: 50px;
+}
+
+.parallax-container {
+  height: 300px;
 }

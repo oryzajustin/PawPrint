@@ -1,0 +1,28 @@
+
+/* Always set the map height explicitly to define the size of the div
+* element that contains the map. */
+#map {
+	height: 70%;
+	width: 100%;
+}
+/* Sets size of sample page */
+
+
+html, body {
+	height: 100%;
+	overflow:hidden;
+	overflow-y:auto;
+}
+
+#nav {
+	background-color: red;
+	width: 100%;
+}
+
+footer {
+	font-size: 3vh;
+	padding-top: 20px;
+	background-color: black;
+	color: white;
+	height: 50px;
+}
