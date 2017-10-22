@@ -1,8 +1,13 @@
 {
 	"DB": {
-		"SERVER": "pawprintdb.mysql.database.azure.com",
-		"USER": "pawprint@pawprintdb",
-		"PASSWORD": "$hackharvard2017",
-		"SCHEMA": "pawprint"
+		"SERVER": "REDACTED",
+		"USER": "REDACTED",
+		"PASSWORD": "REDACTED",
+		"SCHEMA": "REDACTED"
+	},
+	"TWILIO": {
+		"ACCOUNT_SID": "REDACTED",
+		"AUTH_TOKEN": "REDACTED",
+		"NUMBER": "REDACTED"
 	}
 }

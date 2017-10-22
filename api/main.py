@@ -6,12 +6,10 @@ from flask import Flask, request, Response
 import json
 from dbase import DBase
 from twilioClient import TwilioClient
+from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
 twilio_client = TwilioClient()
-
-#def validate_found(data):
-#	if not data.has_key(''):
 
 # CORS
 @app.before_request
@@ -59,7 +57,6 @@ def cameras():
 
 @app.route("/request", methods = ['POST'])
 def requestTrack():
-	#{"cameraids":[0,1,7,8,14,15,21,22,27,28,29,35,36],"name":"testname","phone":"1234567890","pet":"both"}
 	data = request.get_json()
 	camera_ids = data['cameraids']
 	name = data['name']
@@ -67,13 +64,27 @@ def requestTrack():
 	animal_type = data['pet']
 	
 	# Phone number verification
-	#TODO
+	if not twilio_client.validatePhone(phone):
+		return errorResponse(400, "Phone is not valid. Please have it in the format of '+12345678901'")
 
 	with DBase() as db:
 		result = db.addRequest(phone, camera_ids, animal_type, name)
 		return json.dumps({'success': result})
 
+@app.route('/sms', methods = ['POST'])
+def sms():
+	response = MessagingResponse()
+	body = request.values.get('Body', None)
 
+	if(body.lower() == 'stop' or body.lower() == 's'):
+		with DBase() as db:
+			phone = request.values.get('From', None)
+			if db.setFound(phone):
+				response.message("Okay. Bye")
+	else:
+		response.message("Please enter 'Stop' if you want to stop receiving messages.")
+
+	return str(response)
 
 @app.route('/found', methods = ['POST'])
 def found():
@@ -98,7 +109,6 @@ def found():
 
 		result = db.animalFound(camera_id, animal_type, image_url)
 
-		print(json.dumps(result))
 		if result == False:
 			return errorResponse(500, "ERROR PROCESSING REQUEST 1000")
 
@@ -110,10 +120,6 @@ def found():
 			global twilio_client
 			twilio_client.sendMediaSms(message, animal_request['phone'], image_url)
 		return json.dumps(animal_requests)
-
-
-
-print("starting program...")
 
 if __name__ == '__main__':
 	app.run(debug=True,host='0.0.0.0')

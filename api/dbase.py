@@ -7,8 +7,6 @@ with open('config.json') as config_file:
 	global data
 	data = json.load(config_file)
 
-print(data)
-
 class DBase:
 	db = None
 
@@ -54,10 +52,6 @@ class DBase:
 		result = self.cursor.fetchone()
 		return result
 
-	#JJ: getCamera(self, id)
-
-	#JJ: def getFound(self, slug):
-
 	def addRequest(self, phone, camera_ids, animal_type, name):
 		sql = 'INSERT INTO request (name, phone, animal_type) VALUES (%s, %s, %s)'
 		self.cursor.execute(sql, (name, phone, animal_type))
@@ -70,7 +64,11 @@ class DBase:
 			self.db.commit()
 		return True
 
-	#JJ: def setFound(self, slug)
+	def setFound(self, phone):
+		sql = 'UPDATE request SET found=1 WHERE phone=%s'
+		self.cursor.execute(sql, (phone,))
+		self.db.commit()
+		return True
 
 	def animalFound(self, camera_id, animal_type, image):
 		sql = 'INSERT INTO foundanimal (camera_id, type, img) VALUES (%s, %s, %s)'
