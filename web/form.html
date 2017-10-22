@@ -6,13 +6,12 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="css/form.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.0/sweetalert2.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body>
-      <!-- Image and text -->
-
+        <div id="cams"></div>
         <div class="container" style="width:100%; height:100%;">
-
         <nav class="navbar" role="navigation" aria-label="main navigation">
           <div class="navbar-brand">
             <a class="navbar-item" href="index.html" style="font-weight: bold; font-size:18px;">
@@ -35,7 +34,7 @@
                 Start Monitoring
               </h1>
               <h2 class="subtitle">
-                Analyze over 50 cameras spread throughout the Boston metropolitan area.
+                Let us analyze over 50 cameras spread throughout the Boston metropolitan area.
               </h2>
             </div>
           </div>
@@ -58,7 +57,7 @@
                 <div class="field">
                   <label class="label">Phone Number</label>
                   <div class="control">
-                    <input class="input" id="phone" type="tel" placeholder="1-234-567-8910">
+                    <input class="input" id="phone" type="tel" placeholder="+12345678910">
                   </div>
                 </div>
               </div>
@@ -90,6 +89,7 @@
       </div>
 
     <script src="js/form.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.0/sweetalert2.all.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhEVep1vXmpwFs3K2NFX7YlwhK6eINEEQ&callback=initMap"
     async defer></script>
   </body>

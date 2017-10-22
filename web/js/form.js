@@ -1,20 +1,14 @@
-/*TODO
- *-replace URL in post request
- *
- */
-
 var bounds;
+var coords;
 var rectangle;
 var url = "http://pawprint.dirt.io/cameras";
-var form = document.getElementById("myForm");
+var camgrid = document.getElementById("cams");
 var cameras;
 var map;
 var sendData;
 
 $.getJSON(url, function(data) {
 	cameras = data;
-	delete data.latitude;
-	delete data.longitude;
 	placeMarkers();
 });
 
@@ -31,6 +25,7 @@ function initMap() {
 		east: -71.040,
 		west: -71.100
 	};
+	coords = bounds;
 
 	rectangle = new google.maps.Rectangle({
 		bounds: bounds,
@@ -55,23 +50,33 @@ function placeMarkers() {
 }
 
 function formSubmit() {
-	let newBounds = {
-		north: rectangle.getBounds().getNorthEast().lat(),
-		south: rectangle.getBounds().getSouthWest().lat(),
-		east: rectangle.getBounds().getNorthEast().lng(),
-		west: rectangle.getBounds().getSouthWest().lng(),		
-	}
 	sendData = {
-		cameraids: getCameras(newBounds),
+		cameraids: getCameras(coords),
 		name: document.getElementById("name").value,
 		phone: document.getElementById("phone").value,
 		pet: document.getElementById("animal").value
 	};
-	sendData = JSON.stringify(sendData);
 	$("#startBtn").addClass("is-loading");
-	$.post( "https://mdislam.com", sendData, function( data ) {
-	  console.log(data);
-	  window.location.replace('success.html');
+
+	$.ajax({
+	    type: "POST",
+	    /*http://pawprint.dirt.io/request for success
+	    http://dirt.io for error*/
+	    url: "http://pawprint.dirt.io/request",
+	    data: JSON.stringify(sendData),
+	    contentType: "application/json; charset=utf-8",
+	    dataType: "json",
+	    success: function(data){
+	    	window.location.replace("success.html");
+	    },
+	    error: function(errMsg) {
+	    	$("#startBtn").removeClass("is-loading");
+	        swal(
+	        	'Error',
+	        	errMsg.responseText,
+	        	'error'
+	        );
+	    }
 	});
 }
 
@@ -83,4 +88,20 @@ function getCameras(coords) {
 		}
 	}
 	return camID;
+}
+
+function updateView() {
+	camgrid.innerHTML = "";
+	coords = {
+		north: rectangle.getBounds().getNorthEast().lat(),
+		south: rectangle.getBounds().getSouthWest().lat(),
+		east: rectangle.getBounds().getNorthEast().lng(),
+		west: rectangle.getBounds().getSouthWest().lng(),
+	}
+
+	for (let i = 0; i < cameras.length; i++) {
+		if (cameras[i].longitude > coords.west && cameras[i].longitude < coords.east && cameras[i].latitude > coords.south && cameras[i].latitude < coords.north) {
+			camgrid.innerHTML += "<img class='innercam' src='"+ cameras[i].url +"'/><br>";
+		}
+	}
 }
