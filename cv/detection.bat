@@ -1,0 +1,1 @@
+C:\Windows\System32\bash.exe -c "cd darknet/ && ./darknet detector test cfg/voc.data cfg/tiny-yolo-voc.cfg tiny-yolo-voc.weights ../static/img/%1"
