@@ -20,10 +20,10 @@ function initMap() {
 	});
 
 	bounds = {
-		north: 42.361,
-		south: 42.341,
-		east: -71.040,
-		west: -71.100
+		north: 42.356,
+		south: 42.346,
+		east: -71.060,
+		west: -71.080
 	};
 	coords = bounds;
 
