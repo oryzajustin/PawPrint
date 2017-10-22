@@ -57,7 +57,24 @@ def cameras():
 		result = json.dumps(data)
 		return Response(result, mimetype='text/json')
 
-#{'isDogFound': dog_found, 'isCatFound': cat_found, 'url': url, 'image': file_name}
+@app.route("/request", methods = ['POST'])
+def requestTrack():
+	#{"cameraids":[0,1,7,8,14,15,21,22,27,28,29,35,36],"name":"testname","phone":"1234567890","pet":"both"}
+	data = request.get_json()
+	camera_ids = data['cameraids']
+	name = data['name']
+	phone = data['phone']
+	animal_type = data['pet']
+	
+	# Phone number verification
+	#TODO
+
+	with DBase() as db:
+		result = db.addRequest(phone, camera_ids, animal_type, name)
+		return json.dumps({'success': result})
+
+
+
 @app.route('/found', methods = ['POST'])
 def found():
 	data = request.get_json()
@@ -67,9 +84,16 @@ def found():
 			return errorResponse(400, "camera url is not valid")
 		camera_id = camera_id[0] # tuple to int
 
-		animal_type = 'cat'
-		if data['isDogFound']:
+		animal_type = None
+		if data['isDogFound'] and data['isCatFound']:
+			animal_type = 'both'
+		elif data['isDogFound']:
 			animal_type = 'dog'
+		elif data['isCatFound']:
+			animal_type = 'cat'
+		else:
+			return errorResponse(400, "no animal found yo")
+
 		image_url = data['image']
 
 		result = db.animalFound(camera_id, animal_type, image_url)
@@ -81,7 +105,7 @@ def found():
 		animal_requests = db.findActiveRequests(camera_id, animal_type)
 
 		for animal_request in animal_requests:
-			message = 'found yo animal bro'
+			message = 'found yo animal bro.'
 			#JJ: TODO animal_request['name'], animal_request['animal_type']
 			global twilio_client
 			twilio_client.sendMediaSms(message, animal_request['phone'], image_url)

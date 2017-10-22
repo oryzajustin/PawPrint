@@ -40,11 +40,6 @@ class DBase:
 	def getAll(self, sql):
 		self.cursor.execute(sql)
 		return self.results(self.cursor)
-		#JJ: make sure this works
-		#columns = self.cursor.description 
-		#result = [{columns[index][0]:column for index, column in enumerate(value)} for value in self.cursor.fetchall()]
-		#return result
-		#return self.cursor.fetchall()
 
 	def rows(self):
 		return self.cursor.rowcount
@@ -63,9 +58,17 @@ class DBase:
 
 	#JJ: def getFound(self, slug):
 
-	#JJ: def saveRequest(self, request_data)
-
-	#JJ: def findCameraWithinBounds(self, bound_north, bound_south, bound_east, bound_west):
+	def addRequest(self, phone, camera_ids, animal_type, name):
+		sql = 'INSERT INTO request (name, phone, animal_type) VALUES (%s, %s, %s)'
+		self.cursor.execute(sql, (name, phone, animal_type))
+		self.db.commit()
+		request_id = self.cursor.lastrowid
+		
+		for camera_id in camera_ids:
+			sql = 'INSERT INTO requestCamera (request_id, camera_id) VALUES (%s, %s)'
+			self.cursor.execute(sql, (request_id, camera_id))
+			self.db.commit()
+		return True
 
 	#JJ: def setFound(self, slug)
 
@@ -76,8 +79,13 @@ class DBase:
 		return result
 
 	def findActiveRequests(self, camera_id, animal_type):
-		sql = 'SELECT r.id as id, r.name as name, r.phone as phone, r.animal_type as animal_type FROM request r INNER JOIN requestCamera rc ON r.id=rc.request_id WHERE r.found=false AND r.animal_type=%s AND rc.camera_id=%s'
-		self.cursor.execute(sql, (animal_type, camera_id,))
+		if animal_type is 'both':
+			sql = 'SELECT r.id as id, r.name as name, r.phone as phone, r.animal_type as animal_type FROM request r INNER JOIN requestCamera rc ON r.id=rc.request_id WHERE r.found=false AND rc.camera_id=%s'
+			self.cursor.execute(sql, (camera_id,))
+		else:
+			sql = 'SELECT r.id as id, r.name as name, r.phone as phone, r.animal_type as animal_type FROM request r INNER JOIN requestCamera rc ON r.id=rc.request_id WHERE r.found=false AND (r.animal_type="both" OR r.animal_type=%s) AND rc.camera_id=%s'
+			self.cursor.execute(sql, (animal_type, camera_id,))
+
 		return self.results(self.cursor)
 
 
