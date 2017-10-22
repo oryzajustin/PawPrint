@@ -1,0 +1,13 @@
+{
+	"DB": {
+		"SERVER": "REDACTED",
+		"USER": "REDACTED",
+		"PASSWORD": "REDACTED",
+		"SCHEMA": "REDACTED"
+	},
+	"TWILIO": {
+		"ACCOUNT_SID": "REDACTED",
+		"AUTH_TOKEN": "REDACTED",
+		"NUMBER": "REDACTED"
+	}
+}
