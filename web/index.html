@@ -1,55 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Welcome</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link href='http://fonts.googleapis.com/css?family=Josefin+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="index.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		<script src="parallax.min.js"></script>
-	</head>
-	<body>
-		<div id="feature">
-			<div class="midcontainer">
-				<h1 id="maintitle">FindMyPet</h1>
-				<p id="slogan"><em>Because every pet deserves its owner.</em></p>
-				<a class="btn" href="form.html">Let's Get Started!</a>
-			</div>
-		</div>
-		<div class="info">
-			<h2 class="subheading" style="font-size: 8vh">How it Works</h2>
-		<div class="luke">
-			<div class="col-xs-12 col-sm-4">
-				<img src="img/dog.png" class="image img-responsive">
-				<h2 class="title">Notify Us</h2>
-				<p class="pinfo">Lost a pet? Tell us the area where you last saw your pet, and how far you want to search.</p>
-			</div>
-			<div class="col-xs-12 col-sm-4">
-				<img src="img/camera.png" class="image img-responsive">
-				<h2 class="title">We Look Around</h2>
-				<p class="pinfo">We have cameras located around the city which are scanning Boston 24 hours a day, 7 days a week.</p>
-			</div>
-			<div class="col-xs-12 col-sm-4">
-			<img src="img/text.png" class="image img-responsive">
-				<h2 class="title">Get Alerted</h2>
-				<p class="pinfo">We'll send you a text message once we have potentially found your pet!</p>
-			</div></div>
-		</div>
-		<div class="parallax-container" data-parallax="scroll" data-position="top" data-bleed="10" data-image-src="img/bg2.jpg" data-natural-width="851" data-natural-height="307"></div>
-		<footer class="container">
-			<div class="row">
-				<div class="col-md-8" style="text-align: left">
-					<p>&copy; 2017</p>
-				</div>
-				<div class="col-md-1"></div>
-				<div class="col-md-3">
-					<p>Built for HackHarvard2017</p>
-				</div>
-			</div>
-		</footer>
+<html>
+  <head>
+    <title>Pawprint</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/bulma.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+
+    <section id="bg" class="hero is-success is-fullheight">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Pawprint
+          </h1>
+          <h2 class="subtitle">
+            Utilizing public camera streams to detect and report stray animals via computer vision
+          </h2>
+
+          <a onclick="$('html,body').animate({ scrollTop: $('#learnmore').offset().top });" class="button is-info is-medium">Learn More</a>
+          <a href="form.html" class="button is-success is-medium">Get Started</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="learnmore" class="section">
+      <h3 class="title has-text-centered">How it Works</h3><br>
+      <div class="container has-text-centered">
+        <div class="columns">
+          <div class="column">
+            <center><img src="img/dog.png" class="image circle"></center><br>
+            <h5 class="subtitle">Notify Us<h5>
+            <p>
+              Lost a pet? Tell us the area where you last saw your pet, and how far you want to search.
+            </p>
+          </div>
+
+          <div class="column">
+            <center><img src="img/camera.png" class="image circle"></center><br>
+            <h5 class="subtitle">We Look Around<h5>
+            <p>
+              We have cameras located around the city which are scanning Boston 24 hours a day, 7 days a week.
+            </p>
+          </div>
+
+          <div class="column">
+            <center><img src="img/text.png" class="image circle"></center><br>
+            <h5 class="subtitle">Get Alerted<h5>
+            <p>
+              We'll send you a text message once we have potentially found your pet!
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
 
 
-	</body>
-</html>
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>
+            &copy; 2017 Pawprint, Inc.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+  </body>
